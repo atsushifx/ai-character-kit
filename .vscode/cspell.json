@@ -1,0 +1,36 @@
+// @(#) : cspell settings for ths workspa
+/**
+ *
+ * @version  1.0.0
+ * @author   Furukawa, Atsushi <atsushifx@aglabo.com>
+ * @since    2025-02-27
+ * @license  MIT
+ *
+ * @description<<
+ *
+ * this files is cspell (Code Specll Checkr) settings for this workspace.
+ *
+ *<<
+ */
+{
+	"$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/packages/cspell-types/cspell.schema.json",
+	"version": "0.2",
+	"import": [
+		"${env:XDG_CONFIG_HOME}/vscode/cspell.config.json"
+	],
+	"language": "en",
+	"caseSensitive": true,
+	"dictionaryDefinitions": [
+		{
+			"name": "chatbot-dic",
+			"description": "dictionary for chatbot prompts",
+			"path": "./cspell/dicts/chatbot.dic",
+			"addWords": true,
+			"scope": "workspace"
+		}
+	],
+	"dictionaries": [
+		"user-dic",
+		"chatbot-dic"
+	]
+}
