@@ -14,7 +14,8 @@
 ##
 # Log files (if you are creating logs in debug mode, uncomment this)
 **.log*
-#	ignore programming
+
+#  ignore programming
 #  patch
 **.diff
 **.patch
@@ -35,6 +36,10 @@
 
 ## Logfiles
 **.log
+
+## cacje
+**cache*
+
 
 ## Node
 node_modules
