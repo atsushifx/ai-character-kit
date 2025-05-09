@@ -27,7 +27,6 @@ rules:
       space:
         - alphabets
         - numbers
-  ja-no-orthographic-variants: true
   "@textlint-ja/textlint-rule-no-synonyms": true
   no-mixed-zenkaku-and-hankaku-alphabet: true
   "@proofdict/proofdict":
