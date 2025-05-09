@@ -20,19 +20,9 @@ filters:
     allowlistConfigPaths:
       - .textlint/allowlist.yml
 rules:
-  preset-ja-technical-writing:
-    sentence-length:
-      max: 100
-    max-kanji-continuous-len:
-      max: 8
-      allow: []
-    no-mix-dearu-desumasu: true
-    ja-no-mixed-period:
-      allowPeriodMarks:
-        - "、"
-        - ":"
-    no-doubled-joshi:
-      strict: false
+  preset-ja-japanese:
+  sentence-length:
+    max: 100
   preset-ja-spacing:
     ja-space-between-half-and-full-width:
       space:
