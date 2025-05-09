@@ -13,24 +13,24 @@
  *<<
  */
 {
-	"$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/packages/cspell-types/cspell.schema.json",
-	"version": "0.2",
-	"import": [
-		"${env:XDG_CONFIG_HOME}/vscode/cspell.config.json"
-	],
-	"language": "en",
-	"caseSensitive": true,
-	"dictionaryDefinitions": [
-		{
-			"name": "chatbot-dic",
-			"description": "dictionary for chatbot prompts",
-			"path": "./cspell/dicts/chatbot.dic",
-			"addWords": true,
-			"scope": "workspace"
-		}
-	],
-	"dictionaries": [
-		"user-dic",
-		"chatbot-dic"
-	]
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/packages/cspell-types/cspell.schema.json",
+  "version": "0.2",
+  "import": [
+    "${env:XDG_CONFIG_HOME}/vscode/cspell.config.json"
+  ],
+  "language": "en",
+  "caseSensitive": true,
+  "dictionaryDefinitions": [
+    {
+      "name": "chatbot-dic",
+      "description": "dictionary for chatbot prompts",
+      "path": "./cspell/dicts/chatbot.dic",
+      "addWords": true,
+      "scope": "workspace"
+    }
+  ],
+  "dictionaries": [
+    "user-dic",
+    "chatbot-dic"
+  ]
 }
