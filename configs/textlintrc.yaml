@@ -21,13 +21,13 @@ filters:
       - .textlint/allowlist.yml
 rules:
   preset-ja-japanese:
-  sentence-length:
-    max: 100
   preset-ja-spacing:
     ja-space-between-half-and-full-width:
       space:
         - alphabets
         - numbers
+  sentence-length:
+    max: 100
   ja-hiraku: true
   common-misspellings: true
   ja-no-orthographic-variants: true
