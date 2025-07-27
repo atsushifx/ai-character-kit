@@ -1,28 +1,43 @@
-## ignore file for git
+# src: .gitignore
+# @(#) : gitignore for textlint filter (skip-frontmatter)
 #
-# @(#) : git ignore file for
+# Copyright (c) 2025 atsushifx <http://github.com/atsushifx>
 #
-# @author	Furukawa, Atsushi <atsushifx@aglabo.com>
-# @version	1.0.0
-# @date		2022-07-25
-#
-# @description
-#
-#<<
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
 
-## # General settings
-##
-# Log files (if you are creating logs in debug mode, uncomment this)
-**.log*
+##  General
+# S specific files
+.DS_Store
+thumbs.db
 
-#  ignore programming
-#  patch
-**.diff
-**.patch
+# logs, patches
+*.log*
+*.diff
+*.patch
 
-### Editor's ignore
+# history
+.history/
 
-#  Visual Studio Code
+# cache
+.cache/
+**/*cache
+
+# env
+.env.key*
+.env.*.local
+.env*
+
+#	backup/swap/temp
+$~*
+~*
+*~
+*tmp
+*swp
+*lock
+
+##		Editor
+#	VSCode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -31,15 +46,6 @@
 !.vscode/*.code-snippets
 !.vscode/cspell*
 
-# Local History for Visual Studio Code
-.history/
-
-## Logfiles
-**.log
-
-## cacje
-**cache*
-
-
-## Node
+###	Develop
+# Node
 node_modules
