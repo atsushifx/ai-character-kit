@@ -1,32 +1,26 @@
 # src: .gitignore
-# @(#) : gitignore for textlint filter (skip-frontmatter)
+# @(#) : typescript compile settings
 #
 # Copyright (c) 2025 atsushifx <http://github.com/atsushifx>
 #
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
 
-##  General
-# S specific files
+##	General
+#	OS specific files
 .DS_Store
 thumbs.db
 
-# logs, patches
-*.log*
+#	logs, patches
+*.log
 *.diff
 *.patch
 
-# history
+# 	history, cache
 .history/
-
-# cache
 .cache/
 **/*cache
 
-# env
-.env.key*
-.env.*.local
-.env*
 
 #	backup/swap/temp
 $~*
@@ -35,6 +29,25 @@ $~*
 *tmp
 *swp
 *lock
+
+#	.env files
+.env*
+.env.*
+
+## AI generated files
+
+## Coding AI depended
+# CLAUDE.md
+.claude/*
+
+# MCP server dependency files
+.serena/
+.lsmcp/
+
+## Temporary Directory
+temp/
+tmp/
+
 
 ##		Editor
 #	VSCode
@@ -46,6 +59,3 @@ $~*
 !.vscode/*.code-snippets
 !.vscode/cspell*
 
-###	Develop
-# Node
-node_modules
