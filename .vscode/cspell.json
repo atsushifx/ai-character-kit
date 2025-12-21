@@ -1,17 +1,11 @@
-// @(#) : cspell settings for ths workspa
-/**
- *
- * @version  1.0.0
- * @author   Furukawa, Atsushi <atsushifx@aglabo.com>
- * @since    2025-02-27
- * @license  MIT
- *
- * @description<<
- *
- * this files is cspell (Code Specll Checkr) settings for this workspace.
- *
- *<<
- */
+// src: .vscode/cspell.json
+// @(#) : cspell config for user-centric settings
+//
+//
+// Copyright (c) 2025 atsushifx <https://github.com/atsushifx>
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
 {
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/packages/cspell-types/cspell.schema.json",
   "version": "0.2",
@@ -19,18 +13,34 @@
     "${env:XDG_CONFIG_HOME}/vscode/cspell.config.json"
   ],
   "language": "en",
-  "caseSensitive": true,
+  "caseSensitive": false,
+  "allowCompoundWords": true,
   "dictionaryDefinitions": [
     {
-      "name": "chatbot-dic",
-      "description": "dictionary for chatbot prompts",
-      "path": "./cspell/dicts/chatbot.dic",
+      "name": "project-dic",
+      "description": "user dictionary for this project",
+      "path": "./cspell/dicts/agents.dic",
       "addWords": true,
       "scope": "workspace"
     }
   ],
   "dictionaries": [
+    "en-us",
+    // special terms
+    "software-terms",
+    "public-licenses",
+    // programming languages dictionaries
+    "markdown",
+    "css",
+    "html",
+    "fullstack",
+    "typescript",
+    "shellscript",
+    "powershell",
+    "vim",
+    // user defined dictionaries
     "user-dic",
-    "chatbot-dic"
-  ]
+    "project-dic"
+  ],
+  "useGitignore": true
 }
