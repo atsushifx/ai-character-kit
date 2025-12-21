@@ -13,17 +13,9 @@ filters:
     allowlistConfigPaths:
       - .textlint/allowlist.yml
 rules:
-  preset-ja-technical-writing:
+  preset-japanese:
     sentence-length:
       max: 100
-    max-kanji-continuous-len:
-      max: 8
-      allow: []
-    no-mix-dearu-desumasu: {
-      "preferInHeader": "である",
-      "preferInBody": "ですます",
-      "preferInList": "",
-    }
     ja-no-mixed-period:
       allowPeriodMarks:
         - ":"
