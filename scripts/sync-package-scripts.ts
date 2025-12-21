@@ -26,7 +26,7 @@ function resolvePaths(targetDir: string, repoRoot: string): {
 } {
   return {
     targetPkgPath: path.resolve(targetDir, TARGET_PACKAGE_FILE),
-    baseScriptsPath: path.resolve(repoRoot, 'shared/configs', BASE_SCRIPTS_FILE),
+    baseScriptsPath: path.resolve(repoRoot, 'base/configs', BASE_SCRIPTS_FILE),
   };
 }
 
@@ -82,7 +82,8 @@ function syncScripts(targetDir: string, repoRoot: string): void {
     console.log('🚫 Dry run mode is active. No changes will be written.');
   }
 
-  pkgJson.scripts = mergeScripts(pkgJson.scripts ?? {}, baseScripts);
+  // pkgJson.scripts = mergeScripts(pkgJson.scripts ?? {}, baseScripts);
+  pkgJson.scripts = baseScripts; // overwrite base scripts
   updatePackageJson(targetPkgPath, pkgJson);
 }
 

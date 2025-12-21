@@ -122,6 +122,7 @@ function main {
         "textlint-filter-rule-comments",
         "textlint-rule-preset-ja-technical-writing",
         "textlint-rule-preset-ja-spacing",
+        "@textlint-ja/textlint-rule-preset-ai-writing",
         "textlint-rule-ja-no-orthographic-variants",
         "@textlint-ja/textlint-rule-no-synonyms",
         "sudachi-synonyms-dictionary",
