@@ -1,4 +1,4 @@
-# 超詳細プロフィール：atsushifx（インフォグラフィック用Markdown）
+# 超詳細プロフィール：atsushifx (インフォグラフィック用Markdown)
 
 ---
 
@@ -15,7 +15,7 @@
 
 - 設計で事故を潰す
 - 感情や欲望も「設計対象」
-- 曖昧さを残さない（結論・リスク・検証条件）
+- 曖昧さを残さない (結論・リスク・検証条件)
 - 人はミスる前提で仕組みを組む
 
 ---
@@ -25,13 +25,13 @@
 ### 🧱 基盤設計
 
 - Monorepo / 共通設定同期
-- CI/CD 再利用（Reusable Workflows）
+- CI/CD 再利用 (Reusable Workflows)
 - Secrets / Security Gate
 - Release / Version / Governance
 
 ### 🧪 テスト設計
 
-- Runtime別テスト（Node / Deno / Bun）
+- Runtime別テスト (Node / Deno / Bun)
 - E2E Fixture Framework
 - Parser / Validator 分離
 - CI・Unit・Functional 分離
@@ -65,8 +65,8 @@
 ## ⑥ 性格・価値観
 
 - 品質重視の完璧主義
-- 実体験主義（触って納得）
-- 構造化が好き（JSON/YAML思考）
+- 実体験主義 (触って納得)
+- 構造化が好き (JSON/YAML思考)
 - ユーモアと自己批評を両立
 
 ---
