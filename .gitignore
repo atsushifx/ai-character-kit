@@ -94,6 +94,7 @@
 ##  Git
 # allow all gitignore
 !**/.gitignore
+!**/.gitattributes
 
 
 ## ------------------------------------------------------------ ##

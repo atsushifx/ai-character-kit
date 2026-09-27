@@ -1,0 +1,12 @@
+# src: .gitattributes
+# @(#) : line ending settings
+#
+# Copyright (c) 2026- atsushifx <https://github.com/atsushifx>
+#
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
+# Images
+*.jpg               binary
+*.jpeg              binary
+*.png               binary
