@@ -27,9 +27,18 @@ is_ci_environment() {
 }
 
 ##
-# @description Check if lefthook is already installed
-# @return 0 If lefthook is installed
-# @return 1 If lefthook is not installed
+# @description Check if the lefthook executable is available on PATH
+# @return 0 If the lefthook command is found
+# @return 1 If the lefthook command is not found
+is_lefthook_available() {
+  command -v lefthook >/dev/null 2>&1
+}
+
+##
+# @description Check if lefthook git hooks are already installed
+# Assumes the lefthook executable is available (see is_lefthook_available)
+# @return 0 If the hooks are installed
+# @return 1 If the hooks are not installed
 is_lefthook_installed() {
   lefthook check-install >/dev/null 2>&1
 }
@@ -137,11 +146,14 @@ main() {
     return 0
   fi
 
-  # Install lefthook
-  if is_lefthook_installed; then
-    echo "lefthook is already installed."
+  # Install lefthook git hooks (non-fatal: a failure must not abort `prepare`)
+  if ! is_lefthook_available; then
+    echo "Warning: lefthook not found on PATH. Skipping git hooks setup." >&2
+    echo "Hint: install lefthook, then run 'lefthook install'." >&2
+  elif is_lefthook_installed; then
+    echo "lefthook hooks are already installed."
   else
-    setup_lefthook
+    setup_lefthook || echo "Warning: lefthook install failed. Run 'lefthook install' manually." >&2
   fi
 
   # Install shellspec
