@@ -54,19 +54,38 @@ is_shellspec_installed() {
 }
 
 ##
-# @description Install and configure lefthook
-# @return 0 If installation succeeds
-# @return 1 If installation fails
+# @description Check availability, install state, then install lefthook git hooks
+# @return 0 If the hooks are already installed or were installed successfully
+# @return 1 If lefthook is unavailable or the install failed
 setup_lefthook() {
-  echo "Local development environment detected."
-  lefthook install
+  if ! is_lefthook_available; then
+    echo "Error: lefthook not found on PATH." >&2
+    echo "Hint: install lefthook, then run 'lefthook install'." >&2
+    return 1
+  fi
+
+  if is_lefthook_installed; then
+    echo "lefthook hooks are already installed."
+    return 0
+  fi
+
+  echo "Installing lefthook git hooks..."
+
+  if lefthook install; then
+    echo "lefthook hooks installed successfully."
+    return 0
+  fi
+
+  echo "Error: lefthook install failed." >&2
+  echo "Hint: run 'lefthook install' manually." >&2
+  return 1
 }
 
 ##
-# @description Install shellspec to specified directory
+# @description Check install state, then install shellspec to specified directory
 # @arg $1 string Directory path where shellspec will be installed
-# @return 0 If installation succeeds
-# @return 1 If installation fails
+# @return 0 If shellspec is already installed or was installed successfully
+# @return 1 If the install failed
 setup_shellspec() {
   local install_dir="${1:-.tools/shellspec}"
 
@@ -82,10 +101,13 @@ setup_shellspec() {
     echo "shellspec installed successfully to $install_dir"
     echo "Add to PATH: export PATH=\"\$PWD/$install_dir:\$PATH\""
     return 0
-  else
-    echo "Error: shellspec installation failed" >&2
-    return 1
   fi
+
+  echo "Error: shellspec installation failed" >&2
+  if [[ -d "$install_dir" ]]; then
+    echo "Hint: $install_dir already exists but is incomplete. Remove it and retry." >&2
+  fi
+  return 1
 }
 
 ##
@@ -101,11 +123,11 @@ is_agla_tool_installed() {
 }
 
 ##
-# @description Check out an aglabo tool repository
+# @description Check install state, then check out an aglabo tool repository
 # @arg $1 string Repository name (e.g. agla-dev-tools)
 # @arg $2 string Directory path where aglabo tools are checked out (default: ~/.local/tools)
-# @return 0 If installation succeeds or is skipped
-# @return 1 If installation fails
+# @return 0 If the tool is already installed or was installed successfully
+# @return 1 If the install failed
 setup_agla_tool() {
   local repo="$1"
   local tools_dir="${2:-${HOME}/.local/tools}"
@@ -125,20 +147,20 @@ setup_agla_tool() {
     echo "$repo installed successfully to $install_dir"
     echo "Add to PATH: export PATH=\"$install_dir/bin:\$PATH\""
     return 0
-  else
-    echo "Error: $repo installation failed" >&2
-    if [[ -d "$install_dir" ]]; then
-      echo "Hint: $install_dir already exists but is incomplete. Remove it and retry." >&2
-    fi
-    return 1
   fi
+
+  echo "Error: $repo installation failed" >&2
+  if [[ -d "$install_dir" ]]; then
+    echo "Hint: $install_dir already exists but is incomplete. Remove it and retry." >&2
+  fi
+  return 1
 }
 
 ##
 # @description Main entry point
 # @arg $1 string Optional shellspec installation directory (default: .tools/shellspec)
-# @return 0 If installation succeeds or is skipped
-# @return 1 If installation fails
+# @return 0 If every setup step succeeded or was skipped
+# @return 1 If any setup step failed
 main() {
   # Skip in CI environment
   if is_ci_environment; then
@@ -146,23 +168,18 @@ main() {
     return 0
   fi
 
-  # Install lefthook git hooks (non-fatal: a failure must not abort `prepare`)
-  if ! is_lefthook_available; then
-    echo "Warning: lefthook not found on PATH. Skipping git hooks setup." >&2
-    echo "Hint: install lefthook, then run 'lefthook install'." >&2
-  elif is_lefthook_installed; then
-    echo "lefthook hooks are already installed."
-  else
-    setup_lefthook || echo "Warning: lefthook install failed. Run 'lefthook install' manually." >&2
-  fi
+  echo "Local development environment detected."
 
-  # Install shellspec
   local shellspec_dir="${1:-.tools/shellspec}"
-  setup_shellspec "$shellspec_dir"
+  local status=0
 
-  # Install aglabo tools (non-fatal: a failure must not abort `prepare`)
-  setup_agla_tool "agla-dev-tools" || true
-  setup_agla_tool "agla-doc-tools" || true
+  # Run every setup step, then report whether any of them failed
+  setup_lefthook || status=1
+  setup_shellspec "$shellspec_dir" || status=1
+  setup_agla_tool "agla-dev-tools" || status=1
+  setup_agla_tool "agla-doc-tools" || status=1
+
+  return "$status"
 }
 
 # Skip execution when this script is sourced
