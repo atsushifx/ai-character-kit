@@ -1,0 +1,26 @@
+{
+  "name": "@aglabo/ai-agents-prompt",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Development environment for project-starter-template",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atsushifx/ai-agents-prompt.git"
+  },
+  "license": "MIT",
+  "author": "atsushifx <https://github.com/atsushifx>",
+  "type": "module",
+  "scripts": {
+    "prepare": "bash ./scripts/setup-dev-env.sh",
+    "scan:secrets": "concurrently \"betterleaks protect --config ./configs/betterleaks.toml\" \"secretlint --secretlintrc ./configs/secretlint.config.yaml .\"",
+
+    "check:dprint": "dprint check --list-different",
+    "check:dprint:diff": "dprint check",
+    "format:dprint": "dprint fmt",
+
+    "lint:text": "bash ./runners/run-textlint.sh",
+    "lint:markdown": "bash ./runners/run-markdownlint.sh",
+    "lint:spells": "cspell --config .vscode/cspell.json --cache --cache-location .cache/cspell/cSpellCache "
+  }
+}

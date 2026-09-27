@@ -1,67 +1,135 @@
 # src: .gitignore
-# @(#) : typescript compile settings
+# @(#) : gitignore for ai prompts & assets
 #
-# Copyright (c) 2025 atsushifx <http://github.com/atsushifx>
+# Copyright (c) 2025- atsushifx <http://github.com/atsushifx>
 #
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
 
+# default: ignore all files
+*
 
-##  General
-#   OS specific files
-.DS_Store
-thumbs.db
+## Allow Template files
+!/templates
+!/templates/**
 
-#   logs, patches
-*.log
-*.diff
-*.patch
+# Allow README, LICENSE, CONTRIBUTING
+!**/README*
+!**/LICENSE*
+!**/CONTRIBUTING*
 
-#   history, cache
-.history/
-.cache/
-**/*cache
+# Allow .github directories
+!.github/
+!.github/**
+
+# Allow other ignore
+!*ignore
+
+# Allow editorconfig
+!**/.editorconfig
+
+# Allow settings
+!**/settings.json
 
 
-#   backup/swap/temp
-$~*
-~*
-*~
-*tmp
-*swp
-*lock
+## Root configs
+!**/package.json
+!**/pnpm-lock.yaml
+!/renovate.json
+!/lefthook.yml
+!/dprint.jsonc
+!/.shellspec
+!/.mcp.json
+!**/CHANGELOG.md
+!**/Release-Note.md
 
-# .env files
-.env*
-.env.*
+## Project directories
+# config files
+!/configs/
+!/configs/**
+!/configs/**/*.json
+!/configs/**/*.yml
+!/configs/**/*.yaml
+!/configs/**/*.toml
+!/configs/**/*rc
+!/configs/**/*.js
+!/configs/**/*.mjs
 
-## AI generated files
+# runners & scripts
+!/runners
+!/runners/**
+!/runners/**/*.sh
+!/scripts
+!/scripts/**
+!/scripts/**/*.sh
+!/scripts/**/*.ts
 
-## Coding AI depended
-# SDD (Spec-Driven Development) files
-**/.cc-sdd/
+## AI Agents
+# claude code
+!**/CLAUDE*.md
 
-# CLAUDE.md
-.claude/*
-
-# MCP server dependency files
-.serena/
-.lsmcp/
-
-## Temporary Directory
-temp/
-tmp/
+# allowlist details: .claude/.gitignore
+!.claude/
+!**/CLAUDE*.md
+!.claude/agents/
+!.claude/agents/**
+!.claude/agents/**/*.md
+!.claude/rules/
+!.claude/rules/**
+!.claude/rules/**/*.md
 
 
 ##  Editor
 #   VSCode
-.vscode/*
+!.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
 !.vscode/cspell*
+!.vscode/cspell*/**
 
-## Node
-node_modules/
+
+##  Git
+# allow all gitignore
+!**/.gitignore
+!**/.gitattributes
+
+
+## ------------------------------------------------------------ ##
+##  Re-exclude: secrets and generated files                      ##
+##  Must stay last: these rules undo the broad allow rules above ##
+## ------------------------------------------------------------ ##
+
+# dependencies
+**/node_modules/
+
+# temporary directories, cache
+**/temp/
+**/tmp/
+**/.cache/
+**/.history/
+
+# .env files
+**/.env
+**/.env.*
+
+# logs, patches
+*.log
+*.diff
+*.patch
+
+# backup/swap/temp
+*~
+~*
+$~*
+*.tmp
+*.swp
+
+# allow all gitignore
+!**/.gitignore
+
+# deckrd working state (sessions, notes, drafts)
+/docs/.deckrd/idd/
+/docs/.deckrd/notes/
