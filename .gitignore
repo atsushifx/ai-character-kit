@@ -97,6 +97,17 @@
 !**/.gitattributes
 
 
+## -----
+## Projects specific
+## -----
+
+# agent prompt, assets
+!agents/
+!agents/**
+!agents/**/*.md
+!agents/**/*.png
+
+
 ## ------------------------------------------------------------ ##
 ##  Re-exclude: secrets and generated files                      ##
 ##  Must stay last: these rules undo the broad allow rules above ##
